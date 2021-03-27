@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:building_tic_tac_toe_game/custom_dialog.dart';
 import 'package:building_tic_tac_toe_game/game_button.dart';
 import 'package:flutter/material.dart';
@@ -77,72 +79,83 @@ class _HomePageState extends State<HomePage> {
   }
 
   void autoPlay() {
-    var emplyCells = new List();
-    
+    var emptyCells = new List();
+    var list = new List.generate(9, (index) => index + 1);
+    for (var cellID in list) {
+      if (player1.contains(cellID) || player2.contains(cellID)) {
+        emptyCells.add(cellID);
+      }
+    }
+
+    var r = new Random();
+    var randIndex = r.nextInt(emptyCells.length - 1);
+    var cellID = emptyCells[randIndex];
+    int i = buttonsList.indexWhere((element) => element.id == cellID);
+    playGame(buttonsList[i]);
   }
 
   int checkWinner() {
     var winner = -1;
     // row 1
-    if (player1.contain[1] && player1.contain[2] && player1.contain[3]) {
+    if (player1.contains(1) && player1.contains(2) && player1.contains(3)) {
       winner = 1;
     }
-    if (player2.contain[1] && player2.contain[2] && player2.contain[3]) {
+    if (player2.contains(1) && player2.contains(2) && player2.contains(3)) {
       winner = 2;
     }
     // row 2
-    if (player1.contain[4] && player1.contain[5] && player1.contain[6]) {
+    if (player1.contains(4) && player1.contains(5) && player1.contain(6)) {
       winner = 1;
     }
-    if (player2.contain[4] && player2.contain[5] && player2.contain[6]) {
+    if (player2.contains(4) && player2.contains(5) && player2.contain(6)) {
       winner = 2;
     }
 
     // row 3
-    if (player1.contain[7] && player1.contain[8] && player1.contain[9]) {
+    if (player1.contains(7) && player1.contains(8) && player1.contains(9)) {
       winner = 1;
     }
-    if (player2.contain[7] && player2.contain[8] && player2.contain[9]) {
+    if (player2.contains(7) && player2.contains(8) && player2.contains(9)) {
       winner = 2;
     }
 
     // col 1
-    if (player1.contain[1] && player1.contain[4] && player1.contain[7]) {
+    if (player1.contains(1) && player1.contains(4) && player1.contains(7)) {
       winner = 1;
     }
-    if (player2.contain[1] && player2.contain[4] && player2.contain[7]) {
+    if (player2.contains(1) && player2.contains(4) && player2.contains(7)) {
       winner = 2;
     }
 
     // col 2
-    if (player1.contain[2] && player1.contain[5] && player1.contain[8]) {
+    if (player1.contains(2) && player1.contains(5) && player1.contains(8)) {
       winner = 1;
     }
-    if (player2.contain[2] && player2.contain[5] && player2.contain[8]) {
+    if (player2.contains(2) && player2.contains(5) && player2.contains(8)) {
       winner = 2;
     }
 
     // col 3
-    if (player1.contain[3] && player1.contain[6] && player1.contain[9]) {
+    if (player1.contains(3) && player1.contains(6) && player1.contains(9)) {
       winner = 1;
     }
-    if (player2.contain[3] && player2.contain[6] && player2.contain[9]) {
+    if (player2.contains(3) && player2.contains(6) && player2.contains(9)) {
       winner = 2;
     }
 
     // diagnal 1
-    if (player1.contain[1] && player1.contain[5] && player1.contain[9]) {
+    if (player1.contains(1) && player1.contains(5) && player1.contains(9)) {
       winner = 1;
     }
-    if (player2.contain[1] && player2.contain[5] && player2.contain[9]) {
+    if (player2.contains(1) && player2.contains(5) && player2.contains(9)) {
       winner = 2;
     }
 
     // diagnal 2
-    if (player1.contain[3] && player1.contain[5] && player1.contain[7]) {
+    if (player1.contains(3) && player1.contains(5) && player1.contains(7)) {
       winner = 1;
     }
-    if (player2.contain[3] && player2.contain[5] && player2.contain[7]) {
+    if (player2.contains(3) && player2.contains(5) && player2.contains(7)) {
       winner = 2;
     }
 
